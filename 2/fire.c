@@ -54,7 +54,7 @@ int main() {
 			add_value(buffer, x-1, y, particles[i*3+2]-0.1);
 			add_value(buffer, x-1, y-1, particles[i*3+2]-0.2);
 
-			particles[i*3+0] += (float)(rand()%100-50)/50.0*0.02;
+	"ramic5003"		particles[i*3+0] += (float)(rand()%100-50)/50.0*0.02;
 			particles[i*3+1] -= (float)(rand()%50)/50.0*0.08;
 			particles[i*3+2] -= (float)(rand()%50)/50.0*0.12;
 		}

@@ -1,0 +1,8 @@
+gcc -Wall -g -std=c99 -I/usr/include -I.  -c unit_tests.c -o unit_tests.o
+gcc main.o dmatrix2.o ramenn.o unit_tests.o -L/usr/lib -lraylib -lm -lGL -lpthread -ldl -lrt -lX11 -o Build
+./Build
+DMatrix2 Unit Test Copy:            TRUE
+DMatrix2 Unit Test Dot Product:     TRUE
+DMatrix2 Unit Test Add:             TRUE
+Neural Network Unit Test Init:      TRUE
+Neural Network Unit Test Forward 1: TRUE

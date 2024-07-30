@@ -127,7 +127,7 @@ int DMatrix2Add(DMatrix2 *matrix1, DMatrix2 *matrix2, DMatrix2* result)
 	if (matrix1->rows != matrix2->rows || matrix1->columns != matrix2->columns)
 		return 1;
 
-	if (result == NULL)
+	if (matrix1->rows != result->rows  || matrix1->columns != result->columns)
 		return 1;
 
 	for (int c = 0; c < matrix1->columns; c++)
@@ -135,6 +135,76 @@ int DMatrix2Add(DMatrix2 *matrix1, DMatrix2 *matrix2, DMatrix2* result)
 		for (int r = 0; r < matrix2->rows; r++)
 		{
 			result->data[c][r] = matrix1->data[c][r]+matrix2->data[c][r];
+		}
+	}
+
+	return 0;
+}
+
+int DMatrix2Subtract(DMatrix2 *matrix1, DMatrix2 *matrix2, DMatrix2* result)
+{
+	if (matrix1->rows != matrix2->rows || matrix1->columns != matrix2->columns)
+		return 1;
+
+	if (matrix1->rows != result->rows  || matrix1->columns != result->columns)
+		return 1;
+
+	for (int c = 0; c < matrix1->columns; c++)
+	{
+		for (int r = 0; r < matrix2->rows; r++)
+		{
+			result->data[c][r] = matrix1->data[c][r]-matrix2->data[c][r];
+		}
+	}
+
+	return 0;
+}
+
+int DMatrix2Hadamard(DMatrix2 *matrix1, DMatrix2 *matrix2, DMatrix2* result)
+{
+	if (matrix1->rows != matrix2->rows || matrix1->columns != matrix2->columns)
+		return 1;
+
+	if (matrix1->rows != result->rows  || matrix1->columns != result->columns)
+		return 1;
+
+	for (int c = 0; c < matrix1->columns; c++)
+	{
+		for (int r = 0; r < matrix2->rows; r++)
+		{
+			result->data[c][r] = matrix1->data[c][r]*matrix2->data[c][r];
+		}
+	}
+
+	return 0;
+}
+
+int DMatrix2ForEachLambda(DMatrix2 *matrix, double (*lambda)(double))
+{
+	if (lambda == NULL)
+		return 1;
+
+	for (int c = 0; c < matrix->columns; c++)
+	{
+		for (int r = 0; r < matrix->rows; r++)
+		{
+			matrix->data[c][r] = lambda(matrix->data[c][r]);
+		}
+	}
+
+	return 0;
+}
+
+int DMatrix2Transpose(DMatrix2 *src, DMatrix2 *dst)
+{
+	if (src->columns != dst->rows || src->rows != dst->columns)
+		return 1;
+
+	for (int c = 0; c < dst->columns; c++)
+	{
+		for (int r = 0; r < dst->rows; r++)
+		{
+			dst->data[c][r] = src->data[r][c];
 		}
 	}
 

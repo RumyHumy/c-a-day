@@ -1,6 +1,8 @@
 #ifndef DMATRIX2_H
 #define DMATRIX2_H
 
+// -- Structure --
+
 typedef struct DMatrix2
 {
 	double **data;
@@ -8,9 +10,11 @@ typedef struct DMatrix2
 	int rows;
 } DMatrix2;
 
-DMatrix2* DMatrix2Construct(int columns, int rows);
+// -- Methods --
 
-void DMatrix2Destruct(DMatrix2 *matrix);
+// Construct & Destructk
+DMatrix2* DMatrix2Construct(int columns, int rows);
+void      DMatrix2Destruct(DMatrix2 *matrix);
 
 int DMatrix2Copy(DMatrix2 *src, DMatrix2 *dst);
 
@@ -22,9 +26,12 @@ int DMatrix2Dot(DMatrix2 *matrix1, DMatrix2 *matrix2, DMatrix2* result);
 
 int DMatrix2Add(DMatrix2 *matrix1, DMatrix2 *matrix2, DMatrix2* result);
 
-// Tests
-char DMatrix2UnitTestDot();
+int DMatrix2Subtract(DMatrix2 *matrix1, DMatrix2 *matrix2, DMatrix2* result);
 
-char DMatrix2UnitTestAdd();
+int DMatrix2Hadamard(DMatrix2 *matrix1, DMatrix2 *matrix2, DMatrix2* result);
+
+int DMatrix2ForEachLambda(DMatrix2 *matrix, double (*lambda)(double));
+
+int DMatrix2Transpose(DMatrix2 *src, DMatrix2 *dst);
 
 #endif // DMATRIX2_H

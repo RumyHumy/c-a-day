@@ -1,1 +1,1 @@
-# C program a day keeps segfault away!
+# ...keeps segfault away
